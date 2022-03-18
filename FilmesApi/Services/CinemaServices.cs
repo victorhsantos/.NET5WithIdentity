@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using FilmesApi.Data;
 using FilmesApi.Interfaces.Services;
 using FilmesAPI.Data.Dtos;
-using FilmesAPI.Models;
+using FilmesApi.Models;
 using AutoMapper;
 using FluentResults;
 

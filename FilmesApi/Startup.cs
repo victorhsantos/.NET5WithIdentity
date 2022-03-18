@@ -13,20 +13,25 @@ namespace FilmesAPI
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+        
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {            
-            services.AddDbContext<AppDbContext>(options => { options.UseSqlServer(Configuration.GetConnectionString("CinemaConnection"));});
+            services.AddDbContext<AppDbContext>();
             services.AddControllers();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            
             services.AddScoped<ICinemaServices, CinemaServices>();
+            services.AddScoped<IEnderecoServices, EnderecoServices>();
+            services.AddScoped<IFilmesServices, FilmesServices>();
+            services.AddScoped<IGerenteServices, GerenteServices>();
+            services.AddScoped<ISessaoServices, SessaoServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

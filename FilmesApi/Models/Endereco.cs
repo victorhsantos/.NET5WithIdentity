@@ -1,17 +1,9 @@
-﻿using FilmesAPI.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
 namespace FilmesApi.Models
 {
     public class Endereco
-    {
-        [Key]
-        [Required]
+    {        
         public int Id { get; set; }
         public string Logradouro { get; set; }
         public string Bairro { get; set; }

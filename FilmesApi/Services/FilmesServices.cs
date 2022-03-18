@@ -2,20 +2,20 @@
 using FilmesApi.Data;
 using FilmesApi.Interfaces.Services;
 using FilmesAPI.Data.Dtos;
-using FilmesAPI.Models;
+using FilmesApi.Models;
 using FluentResults;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace FilmesApi.Services
 {
-    public class FilmeServices : IFilmesServices
+    public class FilmesServices : IFilmesServices
     {
 
         private AppDbContext _context;
         private IMapper _mapper;
 
-        public FilmeServices(AppDbContext context, IMapper mapper)
+        public FilmesServices(AppDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
