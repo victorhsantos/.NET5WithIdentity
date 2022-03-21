@@ -31,6 +31,13 @@ namespace UsuariosApi
             services.AddIdentity<IdentityUser<int>, IdentityRole<int>>()
                 .AddEntityFrameworkStores<UserDbContext>();
 
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 6;
+            });
+
             services.AddScoped<ICadastroServices, CadastroServices>();
 
             services.AddControllers();
