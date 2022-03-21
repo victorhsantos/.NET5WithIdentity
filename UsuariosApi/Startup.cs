@@ -39,6 +39,7 @@ namespace UsuariosApi
             });
 
             services.AddScoped<ICadastroServices, CadastroServices>();
+            services.AddScoped<ILoginServices, LoginServices>();
 
             services.AddControllers();
 
