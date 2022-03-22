@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using UsuariosApi.Data.Requests;
 using UsuariosApi.Interfaces.Services;
 
@@ -19,8 +20,8 @@ namespace UsuariosApi.Controllers
         public IActionResult Login(LoginRequest request)
         {
             var result = _loginServices.Login(request);
-            if (result.IsFailed) return Unauthorized();
-            return Ok();
+            if (result.IsFailed) return Unauthorized(result.Errors.FirstOrDefault());
+            return Ok(result.Successes.FirstOrDefault());
         }
     }
 }

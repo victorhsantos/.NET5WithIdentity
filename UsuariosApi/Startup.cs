@@ -40,6 +40,8 @@ namespace UsuariosApi
 
             services.AddScoped<ICadastroServices, CadastroServices>();
             services.AddScoped<ILoginServices, LoginServices>();
+            services.AddScoped<ITokenServices, TokenServices>();
+            services.AddScoped<ILogoutServices, LogoutServices>();
 
             services.AddControllers();
 
