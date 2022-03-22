@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using UsuariosApi.Data.Dtos;
+using UsuariosApi.Data.Requests;
 using UsuariosApi.Interfaces.Services;
 
 namespace UsuariosApi.Controllers
@@ -20,7 +22,15 @@ namespace UsuariosApi.Controllers
         {
             var result = _services.AddUser(createUsuarioDTO);
             if (result.IsFailed) return StatusCode(500);
-            return Ok();
+            return Ok(result.Successes.FirstOrDefault());
+        }
+
+        [HttpPost("/ativa")]
+        public IActionResult AtivaConta(AtivaContaRequest request)
+        {
+            var result = _services.ActiveAccount(request);
+            if (result.IsFailed) return StatusCode(500);
+            return Ok(result.Successes.FirstOrDefault());
         }
     }
 }
