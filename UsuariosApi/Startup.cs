@@ -46,6 +46,7 @@ namespace UsuariosApi
             services.AddScoped<ILoginServices, LoginServices>();
             services.AddScoped<ITokenServices, TokenServices>();
             services.AddScoped<ILogoutServices, LogoutServices>();
+            services.AddScoped<IEmailServices, EmailServices>();
 
             services.AddControllers();
 
