@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using FilmesApi.Interfaces.Services;
 using FilmesAPI.Data.Dtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FilmesAPI.Controllers
 {
@@ -15,7 +16,7 @@ namespace FilmesAPI.Controllers
             _filmesServices = filmesServices;
         }
 
-
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public IActionResult AdicionaFilme([FromBody] CreateFilmeDto filmeDto)
         {
