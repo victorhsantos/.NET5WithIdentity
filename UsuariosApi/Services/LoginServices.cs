@@ -27,7 +27,14 @@ namespace UsuariosApi.Services
                     .Users
                     .FirstOrDefault(u => u.NormalizedUserName == request.UserName.ToUpper());
 
-                var token = _tokenServices.CreateToken(user);
+                var role = _signInManager
+                    .UserManager
+                    .GetRolesAsync(user)
+                    .Result
+                    .FirstOrDefault();
+
+
+                var token = _tokenServices.CreateToken(user, role);
 
                 return Result.Ok().WithSuccess(token.Value);
             }
