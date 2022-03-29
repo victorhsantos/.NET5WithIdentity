@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using UsuariosApi.Data;
 using UsuariosApi.Interfaces.Services;
+using UsuariosApi.Models;
 using UsuariosApi.Services;
 
 namespace UsuariosApi
@@ -28,7 +29,7 @@ namespace UsuariosApi
                 options.UseSqlServer(Configuration.GetConnectionString("UserConnection"))
             );
 
-            services.AddIdentity<IdentityUser<int>, IdentityRole<int>>(options =>
+            services.AddIdentity<CustomIdentityUser, IdentityRole<int>>(options =>
                     {
                         options.SignIn.RequireConfirmedEmail = true;
                     })

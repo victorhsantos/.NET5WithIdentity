@@ -3,15 +3,16 @@ using Microsoft.AspNetCore.Identity;
 using System.Linq;
 using UsuariosApi.Data.Requests;
 using UsuariosApi.Interfaces.Services;
+using UsuariosApi.Models;
 
 namespace UsuariosApi.Services
 {
     public class LoginServices : ILoginServices
     {
-        private SignInManager<IdentityUser<int>> _signInManager;
+        private SignInManager<CustomIdentityUser> _signInManager;
         private ITokenServices _tokenServices;
 
-        public LoginServices(SignInManager<IdentityUser<int>> signInManager, ITokenServices tokenServices)
+        public LoginServices(SignInManager<CustomIdentityUser> signInManager, ITokenServices tokenServices)
         {
             _signInManager = signInManager;
             _tokenServices = tokenServices;
@@ -43,7 +44,7 @@ namespace UsuariosApi.Services
 
         public Result GetTokenResetPassword(GetTokenResetPasswordRequest request)
         {
-            IdentityUser<int> user = GetUserByEmail(request.Email);
+            CustomIdentityUser user = GetUserByEmail(request.Email);
 
             if (user == null) return Result.Fail("Falha ao solicitar redefinição.");
 
@@ -68,7 +69,7 @@ namespace UsuariosApi.Services
 
         }
 
-        private IdentityUser<int> GetUserByEmail(string email)
+        private CustomIdentityUser GetUserByEmail(string email)
         {
             return _signInManager
                             .UserManager
